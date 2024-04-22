@@ -21,11 +21,10 @@ docker run \
  -e SCRIMMAGE_API_SERVER_ENDPOINT=<your_scrimmage_api_server_endpoint> \
  -e SCRIMMAGE_PRIVATE_KEY=<your_scrimmage_private_key> \
  -e SCRIMMAGE_NAMESPACE=<your_scrimmage_namespace> \
- -e WEBHOOK_DOMAIN=<your_webhook_domain> \
- -e WEBHOOK_PORT=<your_webhook_port> \
- -p 3000:3000 \
- -p <your_webhook_port>:<your_webhook_port> \
- public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:latest
+ -e DOMAIN=<your_DOMAIN> \
+ -e PORT=<your_PORT> \
+ -p <your_PORT>:<your_PORT> \
+ public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:1.0.3
 ```
 
 All listed environment variables are required. You can find more information
@@ -76,8 +75,8 @@ environment variables are available:
 | Name                            | Description                                            | Required |
 |---------------------------------|--------------------------------------------------------|----------|
 | `TELEGRAM_TOKEN`                | Telegram bot token (see [here](#telegram-bot-token))   | Yes      |
-| `WEBHOOK_DOMAIN`                | The Domain where your bot will be deployed             | No       |
-| `WEBHOOK_PORT`                  | Port on which you wil receive events from Telegram     | No       |
+| `DOMAIN`                        | The Domain where your bot will be deployed             | No       |
+| `PORT`                          | Port on which you wil receive events from Telegram     | No       |
 | `SCRIMMAGE_API_SERVER_ENDPOINT` | Scrimmage API server endpoint                          | Yes      |
 | `SCRIMMAGE_PRIVATE_KEY`         | Scrimmage private key                                  | Yes      |
 | `SCRIMMAGE_NAMESPACE`           | Scrimmage namespace                                    | Yes      |

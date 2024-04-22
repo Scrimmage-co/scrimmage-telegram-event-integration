@@ -88,18 +88,16 @@ export class TelegramService implements OnModuleInit {
     private telegramToScrimmageService: TelegramToScrimmageService,
   ) {}
 
-  async onModuleInit(): Promise<void> {
+  public async startBot() {
     this.client = this.createTelegraf();
     this.addListeners(this.client);
-    await this.client.launch({
-      webhook: {
-        domain: this.configService.get('WEBHOOK_DOMAIN'),
-        port: this.configService.get('WEBHOOK_PORT'),
-      },
+    return await this.client.createWebhook({
+      domain: this.configService.get('DOMAIN'),
+      path: '/telegram/webhook',
     });
-    this.client.webhookCallback(
-      '/bot' + this.configService.get('TELEGRAM_TOKEN'),
-    );
+  }
+
+  async onModuleInit(): Promise<void> {
   }
 
   private addListeners(client: Telegraf) {

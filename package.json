@@ -1,14 +1,14 @@
 {
   "name": "scrimmage-telegram-event-integration",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.3",
+  "description": "Bot for sending events to Scrimmage API",
+  "author": "Scrimmage",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
     "build:docker": "docker build . -f docker/Dockerfile",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",

@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { TelegramToScrimmageService } from './services/telegram-to-scrimmage.service';
 import { ConfigModule } from '@nestjs/config';
 import { ScrimmageService } from './services/scrimmage.service';
-import { TelegramUtilsService } from './services/telegram-utils.service';
 import { loadDotEnvConfiguration } from './configurations';
 import { TelegramService } from './services/telegram.service';
 
@@ -15,11 +14,6 @@ import { TelegramService } from './services/telegram.service';
     }),
   ],
   controllers: [AppController],
-  providers: [
-    TelegramToScrimmageService,
-    ScrimmageService,
-    TelegramUtilsService,
-    TelegramService,
-  ],
+  providers: [TelegramToScrimmageService, ScrimmageService, TelegramService],
 })
 export class AppModule {}

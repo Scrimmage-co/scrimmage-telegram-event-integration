@@ -7,8 +7,7 @@ export interface DotEnvConfiguration {
   SCRIMMAGE_DATA_TYPE_PREFIX: string;
   HOSTNAME: string;
   PORT: number;
-  WEBHOOK_DOMAIN: string;
-  WEBHOOK_PORT: number;
+  DOMAIN: string;
 }
 
 export const loadDotEnvConfiguration = (): DotEnvConfiguration => ({
@@ -21,6 +20,5 @@ export const loadDotEnvConfiguration = (): DotEnvConfiguration => ({
   SCRIMMAGE_PRIVATE_KEY: process.env.SCRIMMAGE_PRIVATE_KEY,
   HOSTNAME: process.env.HOSTNAME || '0.0.0.0',
   PORT: Number(process.env.PORT) || 3000,
-  WEBHOOK_DOMAIN: process.env.WEBHOOK_DOMAIN,
-  WEBHOOK_PORT: Number(process.env.WEBHOOK_PORT) || 3000,
+  DOMAIN: process.env.DOMAIN,
 });

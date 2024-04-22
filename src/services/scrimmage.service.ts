@@ -20,9 +20,11 @@ export class ScrimmageService implements OnModuleInit {
   private logger = new Logger(ScrimmageService.name);
   private eventsQueue: Promise<void>[] = [];
   private widgetLink: string;
+  private dataTypePrefix;
   constructor(private configService: ConfigService) {}
 
   async onModuleInit(): Promise<void> {
+    this.dataTypePrefix = this.configService.get('SCRIMMAGE_DATA_TYPE_PREFIX');
     await Scrimmage.initRewarder({
       apiServerEndpoint: this.configService.get(
         'SCRIMMAGE_API_SERVER_ENDPOINT',
@@ -51,7 +53,7 @@ export class ScrimmageService implements OnModuleInit {
       this.watchEvent(
         Scrimmage.reward.trackRewardableOnce(
           event.userId,
-          event.dataType,
+          `${this.dataTypePrefix}${event.dataType}`,
           event.uniqueId,
           event.body,
         ),
@@ -60,7 +62,7 @@ export class ScrimmageService implements OnModuleInit {
       this.watchEvent(
         Scrimmage.reward.trackRewardable(
           event.userId,
-          event.dataType,
+          `${this.dataTypePrefix}${event.dataType}`,
           event.body,
         ),
       );
