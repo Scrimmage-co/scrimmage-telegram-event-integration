@@ -4,7 +4,7 @@
 
 This repository contains the source code for the Scrimmage Telegram bot.
 Scrimmage - Telegram bot that allows you to convert events from you Telegram 
-server into Scrimmage events. It is built using NestJS and Telegram.js.
+server into Scrimmage events. It is built using NestJS and Telegraf.
 
 ## Deployment
 
@@ -21,7 +21,10 @@ docker run \
  -e SCRIMMAGE_API_SERVER_ENDPOINT=<your_scrimmage_api_server_endpoint> \
  -e SCRIMMAGE_PRIVATE_KEY=<your_scrimmage_private_key> \
  -e SCRIMMAGE_NAMESPACE=<your_scrimmage_namespace> \
+ -e WEBHOOK_DOMAIN=<your_webhook_domain> \
+ -e WEBHOOK_PORT=<your_webhook_port> \
  -p 3000:3000 \
+ -p <your_webhook_port>:<your_webhook_port> \
  public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:latest
 ```
 
@@ -56,11 +59,10 @@ node dist/main.js
 
 To run the bot, you need to have a Telegram bot token. You can find more
 information about Telegram bot tokens
-[here](https://telegramjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot).
+[here](https://core.telegram.org/bots/tutorial).
 
 After you have created a Telegram bot, you need to add it to your Telegram
-server. You can find more information about adding a Telegram bot to your
-server [here](https://telegramjs.guide/preparations/adding-your-bot-to-servers.html).
+server.
 
 We recommend using the following permissions for the bot:
 
@@ -73,9 +75,9 @@ environment variables are available:
 
 | Name                            | Description                                            | Required |
 |---------------------------------|--------------------------------------------------------|----------|
-| `TELEGRAM_TOKEN`                 | Telegram bot token (see [here](#telegram-bot-token))     | Yes      |
-| `TELEGRAM_ALLOWED_GUILD_IDS`     | Comma-separated list of allowed Telegram guild IDs      | No       |
-| `TELEGRAM_ALLOWED_CHANNEL_IDS`   | Comma-separated list of allowed Telegram channel IDs    | No       |
+| `TELEGRAM_TOKEN`                | Telegram bot token (see [here](#telegram-bot-token))   | Yes      |
+| `WEBHOOK_DOMAIN`                | The Domain where your bot will be deployed             | No       |
+| `WEBHOOK_PORT`                  | Port on which you wil receive events from Telegram     | No       |
 | `SCRIMMAGE_API_SERVER_ENDPOINT` | Scrimmage API server endpoint                          | Yes      |
 | `SCRIMMAGE_PRIVATE_KEY`         | Scrimmage private key                                  | Yes      |
 | `SCRIMMAGE_NAMESPACE`           | Scrimmage namespace                                    | Yes      |

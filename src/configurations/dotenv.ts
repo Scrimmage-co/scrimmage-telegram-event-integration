@@ -1,7 +1,5 @@
 export interface DotEnvConfiguration {
   TELEGRAM_TOKEN: string;
-  TELEGRAM_ALLOWED_CHANNEL_IDS: string[];
-  TELEGRAM_ALLOWED_GUILD_IDS: string[];
   TELEGRAM_ALLOW_REGISTRATION: boolean;
   SCRIMMAGE_API_SERVER_ENDPOINT: string;
   SCRIMMAGE_PRIVATE_KEY: string;
@@ -9,16 +7,13 @@ export interface DotEnvConfiguration {
   SCRIMMAGE_DATA_TYPE_PREFIX: string;
   HOSTNAME: string;
   PORT: number;
+  WEBHOOK_DOMAIN: string;
+  WEBHOOK_PORT: number;
 }
 
 export const loadDotEnvConfiguration = (): DotEnvConfiguration => ({
-  TELEGRAM_ALLOW_REGISTRATION: process.env.TELEGRAM_ALLOW_REGISTRATION === 'true',
-  TELEGRAM_ALLOWED_CHANNEL_IDS: (process.env.TELEGRAM_ALLOWED_CHANNEL_IDS || '')
-    .split(',')
-    .filter(id => Boolean(id)),
-  TELEGRAM_ALLOWED_GUILD_IDS: (process.env.TELEGRAM_ALLOWED_GUILD_IDS || '')
-    .split(',')
-    .filter(id => Boolean(id)),
+  TELEGRAM_ALLOW_REGISTRATION:
+    process.env.TELEGRAM_ALLOW_REGISTRATION === 'true',
   TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
   SCRIMMAGE_API_SERVER_ENDPOINT: process.env.SCRIMMAGE_API_SERVER_ENDPOINT,
   SCRIMMAGE_DATA_TYPE_PREFIX: process.env.SCRIMMAGE_DATA_TYPE_PREFIX || '',
@@ -26,4 +21,6 @@ export const loadDotEnvConfiguration = (): DotEnvConfiguration => ({
   SCRIMMAGE_PRIVATE_KEY: process.env.SCRIMMAGE_PRIVATE_KEY,
   HOSTNAME: process.env.HOSTNAME || '0.0.0.0',
   PORT: Number(process.env.PORT) || 3000,
+  WEBHOOK_DOMAIN: process.env.WEBHOOK_DOMAIN,
+  WEBHOOK_PORT: Number(process.env.WEBHOOK_PORT) || 3000,
 });

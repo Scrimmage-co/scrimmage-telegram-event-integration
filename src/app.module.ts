@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { TelegramToScrimmageService } from './services/telegram-to-scrimmage.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { ScrimmageService } from './services/scrimmage.service';
 import { TelegramUtilsService } from './services/telegram-utils.service';
 import { loadDotEnvConfiguration } from './configurations';
-import { TelegrafModule } from 'nestjs-telegraf';
-import { TelegramUpdate } from './services/telegram.update';
+import { TelegramService } from './services/telegram.service';
 
 @Module({
   imports: [
@@ -14,20 +13,13 @@ import { TelegramUpdate } from './services/telegram.update';
       load: [loadDotEnvConfiguration],
       isGlobal: true,
     }),
-    TelegrafModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        token: configService.get<string>('TELEGRAM_TOKEN'),
-      }),
-      inject: [ConfigService],
-    }),
   ],
   controllers: [AppController],
   providers: [
     TelegramToScrimmageService,
     ScrimmageService,
     TelegramUtilsService,
-    TelegramUpdate,
+    TelegramService,
   ],
 })
 export class AppModule {}
