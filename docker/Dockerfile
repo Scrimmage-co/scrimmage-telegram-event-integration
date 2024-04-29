@@ -13,6 +13,7 @@ COPY .eslintrc.js ./
 COPY .prettierrc ./
 COPY nest-cli.json ./
 COPY src ./src
+COPY views ./views
 
 # Allow environment variable to be set from outside
 ARG NODE_ENV
