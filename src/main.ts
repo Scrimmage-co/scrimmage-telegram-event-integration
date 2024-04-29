@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { Configuration } from './configurations';
 import { TelegramService } from './services/telegram.service';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
+import { resolve } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -24,7 +24,7 @@ async function bootstrap() {
     }
   }
 
-  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setBaseViewsDir(resolve('./src/views'));
   app.setViewEngine('hbs');
   const telegramService = app.get(TelegramService);
   app.use(await telegramService.startBot());

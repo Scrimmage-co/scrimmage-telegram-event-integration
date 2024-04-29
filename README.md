@@ -24,7 +24,7 @@ docker run \
  -e DOMAIN=<your_DOMAIN> \
  -e PORT=<your_PORT> \
  -p <your_PORT>:<your_PORT> \
- public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:1.1.1
+ public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:1.1.2
 ```
 
 All listed environment variables are required. You can find more information
