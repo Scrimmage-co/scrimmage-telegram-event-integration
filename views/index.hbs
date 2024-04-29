@@ -14,20 +14,14 @@
     <title></title>
     <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
     <style>
-      .status_need {
+      #webview_data_status {
         display: none;
       }
     </style>
   </head>
   <body>
-    <h1>Please wait, redirecting you to Scrimmage...</h1>
-    <span id="webview_data_status" class="status_need">Checking hash...</span>
+    <span id="webview_data_status" class="status_need"></span>
     <script type="application/javascript">
-      /*
-       * This is a demo code for Telegram WebApp for Bots
-       * It contains basic examples of how to use the API
-       * Note: all requests to backend are disabled in this demo, you should use your own backend
-       */
 
       const ScrimmageApp = {
         initData: Telegram.WebApp.initData || '',
@@ -50,7 +44,7 @@
             ScrimmageApp.apiRequest('POST', body, function (result) {
               webViewStatus.textContent = JSON.stringify(result);
               if (result?.token) {
-                window.location.href = `https://coinflip.apps.scrimmage.co?token=${result.token}`;
+                window.location.href = `{{scrimmageApiServerEndpoint}}?token=${result.token}`;
               }
             });
           }
@@ -58,8 +52,8 @@
 
         // Other
         apiRequest(method, data, onCallback) {
-          fetch(
-            `https://ea68-2001-fb1-71-5f11-2d5e-4cfc-54be-7799.ngrok-free.app/api/auth`,
+            // `https://ea68-2001-fb1-71-5f11-2d5e-4cfc-54be-7799.ngrok-free.app/api/auth`,
+            fetch(`{{authApiUrl}}`,
             {
               method: method,
               body: JSON.stringify({ ...(data || {}) }),
@@ -82,9 +76,6 @@
       };
     </script>
     <script type="application/javascript">
-      /*
-       * This part of code is used to initialize the demo app and set up the event handlers we need.
-       */
       ScrimmageApp.checkInitData();
       ScrimmageApp.init();
     </script>

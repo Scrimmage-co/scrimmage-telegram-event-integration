@@ -1,14 +1,6 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Get,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Configuration } from './configurations';
-import * as crypto from 'crypto';
 import { ScrimmageService } from './services/scrimmage.service';
 import { validate } from './utils/validation';
 
@@ -28,6 +20,17 @@ export class AppController {
 
     return {
       token,
+    };
+  }
+
+  @Get()
+  @Render('index')
+  root() {
+    return {
+      scrimmageApiServerEndpoint: this.configService.get(
+        'SCRIMMAGE_API_SERVER_ENDPOINT',
+      ),
+      authApiUrl: this.configService.get('DOMAIN') + '/api/auth',
     };
   }
 }
