@@ -7,9 +7,7 @@ import { Update } from '@telegraf/types/update';
 export class TelegramToScrimmageService {
   private readonly logger = new Logger(TelegramToScrimmageService.name);
 
-  constructor(
-    private scrimmageService: ScrimmageService,
-  ) {}
+  constructor(private scrimmageService: ScrimmageService) {}
 
   async trackMessage(ctx: Context<Update.MessageUpdate>) {
     this.logger.log(

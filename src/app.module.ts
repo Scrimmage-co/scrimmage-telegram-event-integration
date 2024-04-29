@@ -5,7 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 import { ScrimmageService } from './services/scrimmage.service';
 import { loadDotEnvConfiguration } from './configurations';
 import { TelegramService } from './services/telegram.service';
-
 @Module({
   imports: [
     ConfigModule.forRoot({

@@ -3,9 +3,11 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Configuration } from './configurations';
 import { TelegramService } from './services/telegram.service';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const configService = app.get(ConfigService<Configuration>);
   const requiredEnvs = [
     'TELEGRAM_TOKEN',
@@ -21,6 +23,9 @@ async function bootstrap() {
       process.exit(1);
     }
   }
+
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
   const telegramService = app.get(TelegramService);
   app.use(await telegramService.startBot());
   await app.listen(configService.get('PORT'), configService.get('HOSTNAME'));

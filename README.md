@@ -67,6 +67,17 @@ We recommend using the following permissions for the bot:
 
 - Administrator (for now, we will reduce the required permissions in the future)
 
+
+## Setting up widget
+You can allow your telegram users to open Scrimmage widget right in the telegram chat. To do so, you need to
+set up the domain of the server in the environment variable `DOMAIN`. The widget will be
+available at `https://<your_domain>/`.
+
+Then you need to allow your users to open the widget using the bot. There are a couple of ways to do it. 
+The easiest way is adding widget to the menu - https://core.telegram.org/bots/webapps#launching-mini-apps-from-the-menu-button
+
+To read more about Telegram Mini Apps, you can visit documentation [here](https://core.telegram.org/bots/webapps#webappchat).
+
 ## Configuration
 
 The bot can be configured using environment variables. The following

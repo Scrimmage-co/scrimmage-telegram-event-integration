@@ -10,7 +10,6 @@ interface ScrimmageEvent {
 }
 
 interface RegisterUserParam {
-  avatar: string;
   userId: string;
   username: string;
 }
@@ -84,12 +83,10 @@ export class ScrimmageService implements OnModuleInit {
 
   async registerUser(param: RegisterUserParam): Promise<string> {
     this.logger.log(`Registering user ${param.userId}`);
-    const token = await Scrimmage.user.getUserToken(param.userId, {
+    return await Scrimmage.user.getUserToken(param.userId, {
       properties: {
         ...(param.username && { username: param.username }),
-        ...(param.avatar && { avatar: param.avatar }),
       },
     });
-    return `You have been registered for rewards. [Click to see more](${this.widgetLink}?token=${token})`;
   }
 }
