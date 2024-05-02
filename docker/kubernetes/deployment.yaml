@@ -17,16 +17,10 @@ spec:
     spec:
       containers:
         - name: scrimmage-telegram-event-integration
-          image: public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:0.0.1
+          image: public.ecr.aws/u8g2k1e9/scrimmage-telegram-event-integration:1.1.3
           env:
             - name: TELEGRAM_TOKEN
               value: ""
-            - name: TELEGRAM_ALLOWED_CHANNEL_IDS
-              value: ""
-            - name: TELEGRAM_ALLOWED_GUILD_IDS
-              value: ""
-            - name: TELEGRAM_ALLOW_REGISTRATION
-              value: "true"
             - name: SCRIMMAGE_API_SERVER_ENDPOINT
               value: ""
             - name: SCRIMMAGE_PRIVATE_KEY
@@ -35,6 +29,10 @@ spec:
               value: ""
             - name: SCRIMMAGE_DATA_TYPE_PREFIX
               value: ""
+            - name: DOMAIN
+              value: ""
+            - name: PORT
+              value: "3000"
           resources:
             requests:
               memory: "128Mi"
